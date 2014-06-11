@@ -6,6 +6,8 @@ The After Effects plugin for sending textures to Spout enabled apps.
 ### Installation
 - SpoutSender.aex should be placed in the Plug-ins folder of After Effects
 - If you get an error when starting AE, you should either place the 2 .dll files in the root folder of After Effects (the folder containing AfterFX.exe), or place them in a separate folder and add this folder to the PATH environment variable.
+- Once AE is loaded, the plugin start sharing as soon as you open a composition as with sender's name "AE". 
+- Spout restarts a texture sharing each time you switch between compositions, it may break some receivers like FFGL (Resolume) which don't like having several texture sharing with the same sender name.
 
 ### Notes
 - The plugin has been compiled against the After Effects CC SDK, and has not been tested with other versions than AE CC.
