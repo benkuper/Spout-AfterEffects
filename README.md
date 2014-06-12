@@ -18,3 +18,7 @@ Spout is currently going through a lot of work, so this plugin may not work when
 I put the plugin by popular request, but i won't guarantee any support of it until Spout is in a more mature state.
 
 Thank you
+
+This project is done on my spare time, if you feel like it you can donate whatever you want !
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=bkuperberg%40hotmail%2ecom&lc=US&item_name=Ben%20Kuper&item_number=open_paypal_donate&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" /></a>
+
