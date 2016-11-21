@@ -1,2 +1,4 @@
-SpoutAE/x64/Debug/
-*.sdf
+.vs/Spout-AfterEffects/v14/.suo
+Spout-AfterEffects.VC.db
+Spout-AfterEffects.aps
+Spout-AfterEffects.rc
