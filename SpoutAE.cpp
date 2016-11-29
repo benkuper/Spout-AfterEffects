@@ -51,12 +51,23 @@ MyBlit(
 	{
 		printf("Create sender\n");
 		bSenderInitialized = spoutsender->CreateSender(senderName, tWidth, tHeight);
+		if (pixels2 != nullptr)
+		{
+			delete pixels2;
+			pixels2 = (PF_Pixel8 *)malloc(tWidth*tHeight * sizeof(PF_Pixel8));
+		}
 	}
 	else if (shouldUpdate)
 	{
 		printf("Update sender\n");
 		spoutsender->ReleaseSender();
 		bSenderInitialized = spoutsender->CreateSender(senderName, tWidth, tHeight);
+		if (pixels2 != nullptr)
+		{
+			delete pixels2;
+			pixels2 = (PF_Pixel8 *)malloc(tWidth*tHeight * sizeof(PF_Pixel8));
+		}
+
 	}
 	
 
@@ -64,8 +75,12 @@ MyBlit(
 	{
 
 		PF_Pixel8 * pixels = (PF_Pixel8 *)pix_bufP0->pixelsPV;
-		PF_Pixel8 * pixels2 = (PF_Pixel8 *)malloc(tWidth*tHeight * sizeof(PF_Pixel8));
 
+		if (pixels2 == nullptr)
+		{
+			pixels2 = (PF_Pixel8 *)malloc(tWidth*tHeight * sizeof(PF_Pixel8));
+		}
+		 
 		memcpy(pixels2, pixels, tWidth*tHeight * sizeof(PF_Pixel8));
 
 		for (int y = 0; y<tHeight; y++)
@@ -132,6 +147,7 @@ EntryPointFunc(
 	strcpy(senderName, "After Effects");		// Set the sender name
 	tWidth = 0;
 	tHeight = 0;
+	pixels2 = nullptr;
 
 	return err;
 }

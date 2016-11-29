@@ -37,6 +37,7 @@ char senderName[256];							// Sender name
 bool bMemoryShare;
 int tWidth ;
 int tHeight ;
+PF_Pixel8 * pixels2;
 
 extern "C" {
 	DllExport PF_Err
