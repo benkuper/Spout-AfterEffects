@@ -51,7 +51,7 @@ MyBlit(
 	if (!bSenderInitialized)
 	{
 		printf("Create sender\n");
-		bSenderInitialized = spoutsender->CreateSender(senderName, tWidth, tHeight);
+		bSenderInitialized = spoutsender.CreateSender(senderName, tWidth, tHeight);
 		if (pixels2 != nullptr)
 		{
 			delete pixels2;
@@ -61,8 +61,8 @@ MyBlit(
 	else if (shouldUpdate)
 	{
 		printf("Update sender\n");
-		spoutsender->ReleaseSender();
-		bSenderInitialized = spoutsender->CreateSender(senderName, tWidth, tHeight);
+		spoutsender.ReleaseSender();
+		bSenderInitialized = spoutsender.CreateSender(senderName, tWidth, tHeight);
 		if (pixels2 != nullptr)
 		{
 			delete pixels2;
@@ -136,7 +136,7 @@ MyBlit(
 			}
 		}
 
-		spoutsender->SendImage((unsigned char *)pixels2, tWidth, tHeight,GL_BGRA_EXT, false);
+		spoutsender.SendImage((unsigned char *)pixels2, tWidth, tHeight,GL_BGRA_EXT, false);
 	}
 
 	return PF_Err_NONE;
@@ -154,6 +154,8 @@ MyVersion(
 	void 			*hook_refconPV,
 	A_u_long		*versionPV)
 {
+	spoutsender.SpoutCleanUp(true);
+
 	*versionPV = 1;
 }
 
@@ -180,7 +182,8 @@ EntryPointFunc(
 	printf("SpoutAE EntryPoint\n");
 	*/
 
-	spoutsender = GetSpout(); // Create an instance of the Spout library
+	
+	//spoutsender = GetSpout(); // Create an instance of the Spout library
 	bSenderInitialized = false;						// Spout sender initialization
 	bMemoryShare = false;						// Memoryshare mode not detected yet
 	strcpy(senderName, "After Effects");		// Set the sender name

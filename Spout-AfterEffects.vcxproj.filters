@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Spout">
+      <UniqueIdentifier>{19feebf7-a130-4e33-8e78-cde3402adf89}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -31,6 +34,36 @@
   <ItemGroup>
     <ClCompile Include="SpoutAE.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutCopy.cpp">
+      <Filter>Source Files\Spout</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutDirectX.cpp">
+      <Filter>Source Files\Spout</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutGLDXinterop.cpp">
+      <Filter>Source Files\Spout</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutGLextensions.cpp">
+      <Filter>Source Files\Spout</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutMemoryShare.cpp">
+      <Filter>Source Files\Spout</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutReceiver.cpp">
+      <Filter>Source Files\Spout</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutSDK.cpp">
+      <Filter>Source Files\Spout</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutSender.cpp">
+      <Filter>Source Files\Spout</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutSenderNames.cpp">
+      <Filter>Source Files\Spout</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutSharedMemory.cpp">
+      <Filter>Source Files\Spout</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

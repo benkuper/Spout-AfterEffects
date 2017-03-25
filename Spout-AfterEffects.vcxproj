@@ -22,7 +22,6 @@
     <ProjectGuid>{6D4130D4-8DE3-4EA9-ACDC-8ED259E620D0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SpoutAfterEffects</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -92,7 +91,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SPOUTAFTEREFFECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Documents\Ressources\SDKs\Adobe After Effects CC 2017 Win SDK\Headers;D:\Documents\Ressources\SDKs\Adobe After Effects CC 2017 Win SDK\Util;C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutLibrary\Include\SpoutLibrary.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Spout2\SPOUTSDK\SpoutSDK;D:\Softwares\SDK\AE2017SDK\Util;D:\Softwares\SDK\AE2017SDK\Headers;D:\Softwares\SDK\AE2017SDK\Headers\SP;D:\Softwares\SDK\AE2017SDK\Headers\Win;D:\Softwares\SDK\AE2017SDK\Resources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -105,12 +104,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;SPOUTAFTEREFFECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Documents\Ressources\SDKs\Adobe After Effects CC 2017 Win SDK\Util;C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutLibrary\Include;D:\Documents\Ressources\SDKs\Adobe After Effects CC 2017 Win SDK\Headers;D:\Documents\Ressources\SDKs\Adobe After Effects CC 2017 Win SDK\Headers\SP;D:\Documents\Ressources\SDKs\Adobe After Effects CC 2017 Win SDK\Headers\Win;D:\Documents\Ressources\SDKs\Adobe After Effects CC 2017 Win SDK\Resources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Spout2\SPOUTSDK\SpoutSDK;$(AESDK)\Util;$(AESDK)\Headers;$(AESDK)\SP;$(AESDK)\Win;$(AESDK)\Resources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutLibrary\Binaries\x64\SpoutLibrary.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -122,7 +121,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SPOUTAFTEREFFECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Documents\Ressources\SDKs\Adobe After Effects CC 2017 Win SDK\Headers;D:\Documents\Ressources\SDKs\Adobe After Effects CC 2017 Win SDK\Util;C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutLibrary\Include\SpoutLibrary.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Spout2\SPOUTSDK\SpoutSDK;D:\Softwares\SDK\AE2017SDK\Util;D:\Softwares\SDK\AE2017SDK\Headers;D:\Softwares\SDK\AE2017SDK\Headers\SP;D:\Softwares\SDK\AE2017SDK\Headers\Win;D:\Softwares\SDK\AE2017SDK\Resources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -139,14 +138,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;SPOUTAFTEREFFECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Philipp\Desktop\spout\Spout2-master\SpoutSDK\Source\SPOUT_LIBRARY\Include;C:\Users\philipp\Desktop\Spout2-master\SpoutSDK\Source\SPOUT_LIBRARY\VS2012;\\RAIDER\Philipp\active\frischluft current\sdks\Adobe After Effects CC 2017 Win SDK\Util;\\RAIDER\Philipp\active\frischluft current\sdks\Adobe After Effects CC 2017 Win SDK\Headers;\\RAIDER\Philipp\active\frischluft current\sdks\Adobe After Effects CC 2017 Win SDK\Resources;\\RAIDER\Philipp\active\frischluft current\sdks\Adobe After Effects CC 2017 Win SDK\Headers/Win;\\RAIDER\Philipp\active\frischluft current\sdks\Adobe After Effects CC 2017 Win SDK\Headers\SP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Spout2\SPOUTSDK\SpoutSDK;$(AESDK)\Util;$(AESDK)\Headers;$(AESDK)\SP;$(AESDK)\Win;$(AESDK)\Resources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Users\Philipp\Desktop\spout\Spout2-master\SpoutSDK\Source\SPOUT_LIBRARY\Binaries\x64\SpoutLibrary.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -158,6 +157,16 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutCopy.cpp" />
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutDirectX.cpp" />
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutGLDXinterop.cpp" />
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutGLextensions.cpp" />
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutMemoryShare.cpp" />
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutReceiver.cpp" />
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutSDK.cpp" />
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutSender.cpp" />
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutSenderNames.cpp" />
+    <ClCompile Include="C:\Program Files (x86)\Spout2\SPOUTSDK\SpoutSDK\SpoutSharedMemory.cpp" />
     <ClCompile Include="SpoutAE.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -169,8 +178,8 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl /I "$(AESDK)\Headers" /EP "%(Filename).r" &gt; "$(IntDir)"\\"%(Filename).rr"
 "$(AESDK)\Resources\PiPLTool" "$(IntDir)%(Filename).rr" "$(IntDir)%(Filename).rrc"
 cl /D "MSWindows" /EP $(IntDir)%(Filename).rrc &gt;               "$(ProjectDir)"\\"%(Filename)".rc</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl /I "\\RAIDER\Philipp\active\frischluft current\sdks\Adobe After Effects CC 2017 Win SDK\Headers" /EP "%(Filename).r" &gt; "$(IntDir)"\\"%(Filename).rr"
-"\\RAIDER\Philipp\active\frischluft current\sdks\Adobe After Effects CC 2017 Win SDK\Resources\PiPLTool" "$(IntDir)%(Filename).rr" "$(IntDir)%(Filename).rrc"
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl /I "$(AESDK)\Headers" /EP "%(Filename).r" &gt; "$(IntDir)"\\"%(Filename).rr"
+"$(AESDK)\Resources\PiPLTool" "$(IntDir)%(Filename).rr" "$(IntDir)%(Filename).rrc"
 cl /D "MSWindows" /EP $(IntDir)%(Filename).rrc &gt;               "$(ProjectDir)"\\"%(Filename)".rc</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)%(Filename).rc;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)%(Filename).rc;%(Outputs)</Outputs>

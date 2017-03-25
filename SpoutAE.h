@@ -30,8 +30,8 @@
 #define DllExport   __declspec( dllexport )
 
 
-#include "SpoutLibrary.h"
-SPOUTLIBRARY * spoutsender;
+#include "Spout.h"
+Spout spoutsender;
 bool bSenderInitialized;						// Sender initialization result
 char senderName[256];							// Sender name
 bool bMemoryShare;
