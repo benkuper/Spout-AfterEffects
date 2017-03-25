@@ -20,6 +20,7 @@
 /*******************************************************************/
 
 #include "SpoutAE.h"
+#include <cmath>
 
 #ifdef AE_OS_WIN 
 BOOL APIENTRY LibMain(HANDLE hInstance, DWORD fdwReason, LPVOID lpReserved)
@@ -32,7 +33,7 @@ BOOL APIENTRY LibMain(HANDLE hInstance, DWORD fdwReason, LPVOID lpReserved)
 static PF_Err
 MyBlit(
 	void						*hook_refconPV,
-	const AE_PixBuffer			*pix_bufP0,
+	const AE_PixBuffer			*pix_buf,
 	const AE_ViewCoordinates	*viewP,
 	AE_BlitReceipt				receipt,
 	AE_BlitCompleteFunc			complete_func0,
@@ -42,10 +43,10 @@ MyBlit(
 
 	bool shouldUpdate = false;
 
-	if (pix_bufP0->widthL != (tWidth - 4) || pix_bufP0->heightL != (tHeight + 4)) shouldUpdate = true;
-	tWidth = pix_bufP0->widthL + 4;
-	tHeight = pix_bufP0->heightL - 4;
-	
+	if (pix_buf->widthL != (tWidth) || pix_buf->heightL != (tHeight)) shouldUpdate = true;
+	tWidth = pix_buf->widthL;
+	tHeight = pix_buf->heightL;
+
 
 	if (!bSenderInitialized)
 	{
@@ -73,32 +74,70 @@ MyBlit(
 
 	if(bSenderInitialized)
 	{
-
-		PF_Pixel8 * pixels = (PF_Pixel8 *)pix_bufP0->pixelsPV;
+		PF_Pixel8 * pixels = (PF_Pixel8 *)pix_buf->pixelsPV;
 
 		if (pixels2 == nullptr)
 		{
 			pixels2 = (PF_Pixel8 *)malloc(tWidth*tHeight * sizeof(PF_Pixel8));
 		}
 		 
-		memcpy(pixels2, pixels, tWidth*tHeight * sizeof(PF_Pixel8));
-
 		for (int y = 0; y<tHeight; y++)
 		{
 			for (int x = 0; x<tWidth; x++)
 			{
-				int index = x + y*tWidth;
-				int index2 = x + (tHeight - 1 - y)*tWidth;
-				pixels2[index].alpha = pixels[index2].blue;
-				pixels2[index].red = pixels[index2].green;
-				pixels2[index].green = pixels[index2].red;
-				pixels2[index].blue = pixels[index2].alpha;
+				const unsigned char* src_ptr = (unsigned char*) pix_buf->pixelsPV;
+
+				unsigned char r,g,b,a;
+				// plane bytes aka bytes per channel tells us what channel format AE passes
+				switch (pix_buf->plane_bytesL)
+				{
+					case 1:
+					{
+						// 8 bit unsigned char
+						const unsigned char* src = (unsigned char*) (src_ptr + y*pix_buf->row_bytesL);
+						b = src[x*4 + 0];
+						g = src[x*4 + 1];
+						r = src[x*4 + 2];
+						a = src[x*4 + 3];
+						break;
+					}
+
+					case 2:
+					{
+						// 16 bit unsigned char. AE uses a maximum channel value of 32768 instead of the full 2^16 - 1 = 65535
+						const unsigned short* src = (unsigned short*) (src_ptr + y*pix_buf->row_bytesL);
+						b = (unsigned char) round(src[x*4 + 0] * 255.f/32768.f);
+						g = (unsigned char) round(src[x*4 + 1] * 255.f/32768.f);
+						r = (unsigned char) round(src[x*4 + 2] * 255.f/32768.f);
+						a = (unsigned char) round(src[x*4 + 3] * 255.f/32768.f);
+						break;
+					}
+
+					case 4:
+					{
+						// 32 bit float
+						const float* src = (float*) (src_ptr + y*pix_buf->row_bytesL);
+						b = (unsigned char) round(src[x*4 + 0] * 255.f);
+						g = (unsigned char) round(src[x*4 + 1] * 255.f);
+						r = (unsigned char) round(src[x*4 + 2] * 255.f);
+						a = (unsigned char) round(src[x*4 + 3] * 255.f);
+						break;
+					}
+
+					default:
+						break;
+				}
+
+				pixels2[y*tWidth + x].alpha	= a;
+				pixels2[y*tWidth + x].red	= r;
+				pixels2[y*tWidth + x].green	= g;
+				pixels2[y*tWidth + x].blue	= b;
+
 			}
 		}
 
-		spoutsender->SendImage((unsigned char *)pixels2, tWidth, tHeight,GL_BGRA_EXT,true);
+		spoutsender->SendImage((unsigned char *)pixels2, tWidth, tHeight,GL_BGRA_EXT, false);
 	}
-
 
 	return PF_Err_NONE;
 }
