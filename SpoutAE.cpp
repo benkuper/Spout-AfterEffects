@@ -51,12 +51,87 @@ MyBlit(
 	if (!bSenderInitialized)
 	{
 		printf("Create sender\n");
+		HWND m_hwnd;
+		HDC m_hdc;
+		HGLRC m_hRC;
+		HGLRC m_hSharedRC;
+		bool bOpenGL = false;
+
+		m_hwnd = CreateWindow(L"BUTTON", L"VDJ Sender", WS_OVERLAPPEDWINDOW | CS_OWNDC, 0, 0, 32, 32, NULL, NULL, NULL, NULL);
+
+		if (!m_hwnd)
+		{
+			printf("InitOpenGL error 1\n");
+			MessageBoxA(NULL, "Error 1\n", "InitOpenGL", MB_OK);
+		}
+
+		m_hdc = GetDC(m_hwnd);
+		if (!m_hdc)
+		{
+			printf("InitOpenGL error 2\n");
+			MessageBoxA(NULL, "Error 2\n", "InitOpenGL", MB_OK);
+		}
+
+		PIXELFORMATDESCRIPTOR pfd;
+		ZeroMemory(&pfd, sizeof(pfd));
+		pfd.nSize = sizeof(pfd);
+		pfd.nVersion = 1;
+		pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+		pfd.iPixelType = PFD_TYPE_RGBA;
+		pfd.cColorBits = 32;
+		pfd.cDepthBits = 24;
+		pfd.cStencilBits = 8;
+		pfd.iLayerType = PFD_MAIN_PLANE;
+		int iFormat = ChoosePixelFormat(m_hdc, &pfd);
+		if (!iFormat)
+		{
+			printf("InitOpenGL error 3\n");
+			MessageBoxA(NULL, "Error 3\n", "InitOpenGL", MB_OK);
+		}
+
+		if (!SetPixelFormat(m_hdc, iFormat, &pfd))
+		{
+			printf("InitOpenGL error 4\n");
+			MessageBoxA(NULL, "Error 4\n", "InitOpenGL", MB_OK);
+		}
+
+		m_hRC = wglCreateContext(m_hdc);
+		if (!m_hRC)
+		{
+			printf("InitOpenGL error 5\n");
+			MessageBoxA(NULL, "Error 5\n", "InitOpenGL", MB_OK);
+		}
+
+		wglMakeCurrent(m_hdc, m_hRC);
+		if (wglGetCurrentContext() == NULL)
+		{
+			printf("InitOpenGL error 6\n");
+			MessageBoxA(NULL, "Error 6\n", "InitOpenGL", MB_OK);
+		}
+
+		m_hSharedRC = wglCreateContext(m_hdc);
+		if (!m_hSharedRC) printf("InitOpenGL shared context not created\n");
+		if (!wglShareLists(m_hSharedRC, m_hRC)) printf("wglShare Lists failed\n");
+
+		//spoutSender = std::make_shared<SpoutSender>();
+		std::cout << std::endl << std::endl << "Num Adapters:\t" << spoutsender.GetNumAdapters() << std::endl;
+		std::cout << "Using Adapter:\t" << spoutsender.GetAdapter() << std::endl;
+		std::cout << "using DX9?\t" << spoutsender.GetDX9() << std::endl << "using CPU?\t" << spoutsender.GetCPUmode() << std::endl << "GetShareMode():\t" << spoutsender.GetShareMode() << std::endl;
+		bSenderInitialized = spoutsender.CreateSender(senderName, tWidth, tHeight);
+
+		if (pixels2 != nullptr)
+		{
+			delete pixels2;
+			pixels2 = (PF_Pixel8*)malloc(tWidth * tHeight * sizeof(PF_Pixel8));
+		}
+
+		/*
 		bSenderInitialized = spoutsender.CreateSender(senderName, tWidth, tHeight);
 		if (pixels2 != nullptr)
 		{
 			delete pixels2;
 			pixels2 = (PF_Pixel8 *)malloc(tWidth*tHeight * sizeof(PF_Pixel8));
-		}
+		}*/
 	}
 	else if (shouldUpdate)
 	{
@@ -147,6 +222,7 @@ MyDeath(
 	void 		*hook_refconPV)
 {
 	// free anything you allocated.
+	spoutsender.SpoutCleanUp(true);
 }
 
 static void
@@ -154,8 +230,7 @@ MyVersion(
 	void 			*hook_refconPV,
 	A_u_long		*versionPV)
 {
-	spoutsender.SpoutCleanUp(true);
-
+	
 	*versionPV = 1;
 }
 
@@ -173,14 +248,14 @@ EntryPointFunc(
 	hooksP->version_hook_func = MyVersion;
 
 
-	/*
-	AllocConsole();
-	freopen("CONIN$",  "r", stdin);
-	freopen("CONOUT$", "w", stdout);
-	freopen("CONOUT$", "w", stderr);
 	
-	printf("SpoutAE EntryPoint\n");
-	*/
+	//AllocConsole();
+	//freopen("CONIN$",  "r", stdin);
+	//freopen("CONOUT$", "w", stdout);
+	//freopen("CONOUT$", "w", stderr);
+	//
+	//printf("SpoutAE EntryPoint\n");
+	
 
 	
 	//spoutsender = GetSpout(); // Create an instance of the Spout library
