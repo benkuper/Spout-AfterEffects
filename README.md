@@ -13,4 +13,4 @@ Download the .aex from the release page : https://github.com/benkuper/Spout-Afte
 
 
 ## Perhaps the most important
-If you like this plugin and have a real use for it, please consider making a donation or better even become a sponsor !
+If you like this plugin and have a real use for it, please consider making a donation or better even become a sponsor ! (link in the button at this page's top-right)
